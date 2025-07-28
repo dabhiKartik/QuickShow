@@ -18,7 +18,7 @@ app.use(clerkMiddleware())
 
 
 // API Routes
-app.get(("/"),(req,res)=> res.send("server are running"))
+app.get("/",(req,res)=> res.send("server are running"))
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 
