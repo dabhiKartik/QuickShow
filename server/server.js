@@ -10,7 +10,7 @@ import { inngest, functions } from "./inngest/index.js"
 const app=express()
 const PORT =3000
 
- await  connectDB()
+ await connectDB()
 //middleware
 app.use(express.json())
 app.use(cors())
