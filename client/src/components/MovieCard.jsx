@@ -1,20 +1,25 @@
 /** @format */
 
-import React from "react";
 import { StarIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 import { timeFormate } from "../lib/TimeFormate";
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
-
+  const { image_url } = useAppContext();
   return (
-    <div className='flex flex-col justify-between p-3 bg-gray-800 rounded-xl hover:-translate-y-1 transition duration-300'>
+    <div className='flex flex-col justify-between p-3 bg-gray-800 rounded-2xl hover:-translate-y-1 transition duration-300 '>
       <img
-        className='w-full h-48 sm:h-52 rounded-lg object-cover object-right-bottom cursor-pointer'
-        src={movie.poster_path}
+        onClick={() => {
+          navigate(`/movies/${movie._id}`);
+          scrollTo(0, 0);
+        }}
+        className='rounded-lg h-52 w-full object-cover object-right-bottom cursor-pointer'
+        src={image_url + movie.poster_path}
         alt={movie.title}
       />
+
       <h3 className='truncate font-semibold mt-2 text-sm'>{movie.title}</h3>
       <p className='text-xs text-gray-400 mt-1 leading-tight'>
         {new Date(movie.release_date).getFullYear()}
