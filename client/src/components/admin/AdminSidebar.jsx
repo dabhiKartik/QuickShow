@@ -6,7 +6,6 @@ import {
   ListIcon,
   PlusSquareIcon,
 } from "lucide-react";
-import React from "react";
 import { assets } from "../../assets/assets";
 import { NavLink } from "react-router-dom";
 
@@ -39,12 +38,6 @@ const AdminSidebar = () => {
       icon: ListCollapseIcon,
     },
   ];
-
-  // width: 245;
-  // height: 40;
-  // angle: 0 deg;
-  // opacity: 1;
-  // top: 246px;
 
   return (
     <div className='h-[calc(100vh-64px)] md:flex flex-col items-center pt-8 max-w-13  md:max-w-60 w-full border-r border-gray-300/20 text-sm  '>

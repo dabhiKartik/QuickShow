@@ -1,12 +1,11 @@
-export const BookDateFormate=(date)=>{
+/** @format */
 
- return `${new Date(date).toLocaleString("en-US",{
-    weekday:"short",
-    month:"long",
-    day:"numeric",
-    hour:"numeric",
-    minute:"numeric"
- })} `
- 
- 
-}
+export const DateFormate = (date) => {
+  return `${new Date(date).toLocaleString("en-US", {
+    weekday: "short",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  })} `;
+};

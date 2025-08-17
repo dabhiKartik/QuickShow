@@ -1,14 +1,13 @@
 /** @format */
-import React, { useEffect, useState } from "react";
-import { dummyShowsData } from "../../assets/assets";
+import { useEffect, useState } from "react";
 import Title from "../../components/admin/Title";
-import Loading from "../../components/Loading"
-import {BookDateFormate} from '../../lib/DateFormate'
-
-
-
+import Loading from "../../components/Loading";
+import { DateFormate } from "../../lib/DateFormate";
+import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const ListShows = () => {
+  const { axios, getToken, user } = useAppContext();
 
   const currency = import.meta.env.VITE_CURRENCY;
 
@@ -16,41 +15,39 @@ const ListShows = () => {
   const [loading, setLoading] = useState(true);
 
   const getAllShows = async () => {
-
-
     try {
-      setShows([
-        {
-          movie: dummyShowsData[0],
-          showDateTime: "2025-06-30T02:30:00.000Z",
-          showPrice: 59,
-          occupiedSeats: {
-            A1: "user_1",
-            B1: "user_1",
-            C1: "user_1",
-          },
+      const { data } = await axios.get("/api/admin/all-shows", {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
         },
-        {
-          movie: dummyShowsData[0],
-          showDateTime: "2025-06-30T02:30:00.000Z",
-          showPrice: 59,
-          occupiedSeats: {
-            A1: "user_1",
-            B1: "user_1",
-            C1: "user_1",
-          },
-        },
-      ]);
+      });
 
-      setLoading(false);
+      if (data.status.code === 200) {
+        setShows(
+          data.shows.map((show) => {
+            return {
+              movie: show.movie,
+              showDateTime: show.showDateTime,
+              showPrice: show.showPrice,
+              occupiedSeats: show.occupiedSeats,
+            };
+          })
+        );
+
+        setLoading(false);
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
-      console.error(error);
+      toast.error(error.message);
     }
   };
 
   useEffect(() => {
-    getAllShows();
-  }, []);
+    if (user) {
+      getAllShows();
+    }
+  }, [user]);
 
   return !loading ? (
     <>
@@ -73,15 +70,13 @@ const ListShows = () => {
                 className='border-b border-primary/10 bg-primary/5 even:bg-primary/10'
               >
                 <td className='p-2 min-w-45 pl-5'>{show.movie.title}</td>
-                <td className='p-2'>{BookDateFormate(show.showDateTime)}</td>
+                <td className='p-2'>{DateFormate(show.showDateTime)}</td>
                 <td className='p-2'>
                   {Object.keys(show.occupiedSeats).length}
                 </td>
-                <td className='p-2'>{currency}
-                  {
-                  (
-                    Object.keys(show.occupiedSeats).length * show.showPrice
-                  )}
+                <td className='p-2'>
+                  {currency}
+                  {Object.keys(show.occupiedSeats).length * show.showPrice}
                 </td>
               </tr>
             ))}

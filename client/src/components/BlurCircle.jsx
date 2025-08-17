@@ -1,7 +1,5 @@
 /** @format */
 
-import React from "react";
-
 const BlurCircle = ({
   top = "auto",
   left = "auto",

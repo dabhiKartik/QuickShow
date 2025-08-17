@@ -1,12 +1,13 @@
 /** @format */
 
-import React from "react";
-import { ArrowRight, Star, StarIcon } from "lucide-react";
-import { dummyShowsData } from "../assets/assets";
+import { ArrowRight } from "lucide-react";
+
 import BlurCircle from "./BlurCircle";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import { useAppContext } from "../context/AppContext";
 const FeaturedSection = () => {
+  const { shows } = useAppContext();
   const navigate = useNavigate();
 
   return (
@@ -24,7 +25,7 @@ const FeaturedSection = () => {
       </div>
 
       <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8'>
-        {dummyShowsData.map((movie) => (
+        {shows.map((movie) => (
           <MovieCard key={movie._id} movie={movie} />
         ))}
       </div>

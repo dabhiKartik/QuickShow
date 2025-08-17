@@ -1,27 +1,37 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
-import { dummyBookingData } from "../assets/assets";
+import { useEffect, useState } from "react";
 
 import BlurCircle from "../components/BlurCircle";
 import Loading from "../components/Loading";
-
-import { BookDateFormate } from "../lib/DateFormate";
+import { useAppContext } from "../context/AppContext";
+import { DateFormate } from "../lib/DateFormate";
 import { timeFormate } from "../lib/TimeFormate";
+import { NavLink } from "react-router-dom";
 const MyBookings = () => {
+  const { user, getToken, axios, image_url } = useAppContext();
   const currency = import.meta.env.VITE_CURRENCY;
 
   const [bookings, setBooking] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   const getMyBooking = async () => {
-    setBooking(dummyBookingData);
-    setLoading(false);
+    const { data } = await axios.get("/api/user/bookings", {
+      headers: { Authorization: `Bearer ${await getToken()}` },
+    });
+    if (data.status.code === 200) {
+      setBooking(data.bookings);
+      setLoading(false);
+    } else {
+      toast.error(data.status.message);
+    }
   };
 
   useEffect(() => {
-    getMyBooking();
-  }, []);
+    if (user) {
+      getMyBooking();
+    }
+  }, [user]);
   return isLoading ? (
     <div>
       <Loading />
@@ -43,7 +53,7 @@ const MyBookings = () => {
           <div className='flex flex-col md:flex-row'>
             <img
               className='md:max-w-45 aspect-video h-auto object-cover object-bottom rounded'
-              src={booking.show.movie.poster_path}
+              src={image_url + booking.show.movie.poster_path}
               alt=''
             />
 
@@ -55,7 +65,7 @@ const MyBookings = () => {
                 {timeFormate(booking.show.movie.runtime)}
               </p>
               <p className='text-gray-400 text-sm mt-auto '>
-                {BookDateFormate(booking.show.showDateTime)}
+                {DateFormate(booking.show.showDateTime)}
               </p>
             </div>
           </div>
@@ -66,9 +76,12 @@ const MyBookings = () => {
                 {booking.amount}
               </p>
               {!booking.isPaid && (
-                <button className='bg-primary px-4 py-1.5 mb-3 text-sm rounded-full font-medium cursor-pointer'>
+                <NavLink
+                  to={booking.paymentLink}
+                  className='bg-primary px-4 py-1.5 mb-3 text-sm rounded-full font-medium cursor-pointer'
+                >
                   Pay Now
-                </button>
+                </NavLink>
               )}
             </div>
             <div className='text-sm'>
