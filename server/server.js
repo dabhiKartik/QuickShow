@@ -21,8 +21,8 @@ await connectDB();
 
 app.use(cors());
 app.post(
-  "/webhook",
-  express.raw({ type: "application/json" }), // Keep raw body for signature check
+  "/api/razorpay",
+  express.raw({ type: "application/json" }),
   razorpayWebhook
 );
 app.use(clerkMiddleware());
