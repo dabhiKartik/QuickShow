@@ -242,6 +242,7 @@ const sendNewShowNotifications = inngest.createFunction(
 
       await sendEmail({ to: userEmail, subject, body });
     }
+    return { message: "Notification sent" };
   }
 );
 

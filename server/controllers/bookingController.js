@@ -15,7 +15,9 @@ const checkSeatsAvailability = async (showId, selectedSeats) => {
 
     const isAnySeatTaken = selectedSeats.some((seat) => occupiedSeats[seat]);
     return !isAnySeatTaken;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const createBooking = async (req, res) => {
@@ -53,7 +55,7 @@ export const createBooking = async (req, res) => {
     const option = {
       amount: Math.floor(booking.amount) * 100, // in paise
       currency: "INR",
-      description: `showDateTime : ${ShowData.showDateTime}`,
+      description: ShowData.movie.title,
       notes: {
         bookingId: booking._id.toString(),
         movie: ShowData.movie.title,

@@ -83,7 +83,7 @@ export const addShow = async (req, res) => {
           movie: movieId,
           showDateTime: new Date(dateTimeString),
           showPrice,
-          occupiedSeats: {}, // check schema type here
+          occupiedSeats: {},
         });
       });
     });
@@ -95,15 +95,16 @@ export const addShow = async (req, res) => {
         name: "app/show.added",
         data: { movieTitle: movie.title },
       });
-    }
 
-    return res.status(400).json({
-      status: {
-        code: 400,
-        message: "No valid shows created",
-        error: true,
-      },
-    });
+      return res.status(200).json({
+        status: {
+          code: 200,
+          message: "shows created successfully",
+          error: false,
+        },
+        newShow,
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       status: {
