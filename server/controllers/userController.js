@@ -57,7 +57,7 @@ export const updateFavorite = async (req, res) => {
     return res.status(200).json({
       status: {
         code: 200,
-        message: "Favorite added successfully.",
+        message: "Favorite updated successfully.",
         error: false,
       },
     });
