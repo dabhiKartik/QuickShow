@@ -21,8 +21,7 @@ const ListBookings = () => {
           Authorization: `Bearer ${await getToken()}`,
         },
       });
-      console.log(data);
-
+ 
       if (data.status.code === 200) {
         setBookings(data.bookings);
         setLoading(false);

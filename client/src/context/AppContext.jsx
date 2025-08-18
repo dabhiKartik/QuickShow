@@ -41,7 +41,7 @@ export const AppProvider = ({ children }) => {
   const fetchShows = async () => {
     try {
       const { data } = await axios.get("/api/show/all");
-      console.log("data", data);
+     
       if (data.status.code === 200) {
         setShows(data.shows);
       } else {
@@ -58,7 +58,7 @@ export const AppProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${await getToken()}` },
       });
 
-      if (data.success) {
+      if (data.status.code) {
         setFavoriteMovies(data.movies);
       } else {
         toast.error(data.message);
