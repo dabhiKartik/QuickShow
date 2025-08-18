@@ -115,7 +115,7 @@ const SeatLayout = () => {
         navigate("/my-bookings");
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error(error.message);
     }
   };
 

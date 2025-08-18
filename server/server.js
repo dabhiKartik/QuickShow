@@ -17,8 +17,8 @@ const app = express();
 const PORT = 3000;
 
 await connectDB();
-//middleware
 
+//middleware
 app.use(cors());
 app.post(
   "/api/razorpay",

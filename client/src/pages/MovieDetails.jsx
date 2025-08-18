@@ -26,7 +26,7 @@ const MovieDetails = () => {
   } = useAppContext();
   const getShow = async () => {
     const { data } = await axios.get(`/api/show/${id}`);
-    console.log(data);
+
 
     if (data.status.code === 200) {
       setShow(data);

@@ -77,7 +77,7 @@ export const getFavorites = async (req, res) => {
     return res.status(200).json({
       status: {
         code: 200,
-        message: "booking get successfully",
+        message: "get favorite movie successfully",
         error: false,
       },
       movies,

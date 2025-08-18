@@ -10,7 +10,7 @@ import { useAppContext } from "../../context/AppContext";
 const Layout = () => {
   const { fetchIsAdmin, isAdmin } = useAppContext();
   useEffect(() => {
-    fetchIsAdmin();
+    fetchIsAdmin
   }, []);
 
   return isAdmin ? (
