@@ -1,7 +1,7 @@
 /** @format */
 
 import Booking from "../models/Booking.js";
-import Show from "../models/show.js";
+import Show from "../models/Show.js";
 import User from "../models/User.js";
 
 // API to check if user is admin

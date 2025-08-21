@@ -27,7 +27,6 @@ const MovieDetails = () => {
   const getShow = async () => {
     const { data } = await axios.get(`/api/show/${id}`);
 
-
     if (data.status.code === 200) {
       setShow(data);
     }
@@ -78,8 +77,8 @@ const MovieDetails = () => {
             {show.movie.overview}
           </p>
           <p className='text-[#D1D5DC] font-normal'>
-            {timeFormate(show.movie.runtime)} -
-            {show.movie.genres.map((genre) => genre.name).join(" | ")} -
+            {timeFormate(show.movie.runtime)} -{" "}
+            {show.movie.genres.map((genre) => genre.name).join(" | ")} -{" "}
             {dateFormate(show.movie.release_date)}
           </p>
 

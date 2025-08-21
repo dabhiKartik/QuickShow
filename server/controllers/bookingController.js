@@ -2,7 +2,7 @@
 
 import { inngest } from "../inngest/index.js";
 import Booking from "../models/Booking.js";
-import Show from "../models/show.js";
+import Show from "../models/Show.js";
 import Razorpay from "razorpay";
 
 const checkSeatsAvailability = async (showId, selectedSeats) => {

@@ -41,7 +41,7 @@ const MyBookings = () => {
       <BlurCircle top='100px' left='100px' />
 
       <div>
-        <BlurCircle bottom='0px' left='600px' />
+        <BlurCircle bottom='0px' right='100px' />
       </div>
       <h1 className='font-bold text-lg mb-4'>My Bookings</h1>
 
