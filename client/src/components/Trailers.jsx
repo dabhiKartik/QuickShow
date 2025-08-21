@@ -9,7 +9,7 @@ import { PlayCircleIcon } from "lucide-react";
 const Trailers = () => {
   const [currentTrailers, setCurrentTrailer] = useState(dummyTrailers[0]);
   return (
-    <div className='px-6 md:px-16 lg:px-24 xl:px-44'>
+    <div className='px-6 md:px-16 lg:px-24 xl:px-44 py-20 overflow-hidden'>
       <p className=' text-gray-300 font-medium text-lg max-w-[960px] mx-auto'>
         Trailers
       </p>
@@ -44,9 +44,7 @@ const Trailers = () => {
               className='absolute top-1/2 left-1/2 w-5 md:h-12 transform -translate-x-1/2 -translate-y-1/2'
             />
           </div>
-        )
-        
-        )}
+        ))}
       </div>
     </div>
   );

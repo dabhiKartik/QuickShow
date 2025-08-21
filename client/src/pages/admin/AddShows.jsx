@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Title from "../../components/admin/Title";
-
 import { CheckIcon, DeleteIcon, StarIcon } from "lucide-react";
 import { formatNumber } from "../../lib/formatNumber ";
 import Loading from "../../components/Loading";
@@ -120,7 +119,7 @@ const AddShows = () => {
       <Title text1='Add' text2='Shows' />
       <p className=' mt-10 text-lg font-medium'>Now Playing Movies </p>
 
-      <div className='overflow-x-auto no-scrollbar pb-4'>
+      <div className='overflow-x-auto pb-4'>
         <div className='group flex flex-wrap gap-4 mt-4 w-max'>
           {nowPlayingMovies.map((movie) => (
             <div
